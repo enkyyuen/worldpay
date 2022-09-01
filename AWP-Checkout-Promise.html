@@ -106,6 +106,24 @@
         padding: 15px 0;
         transition: background 0.3s ease;
       }
+      .promise {
+        background: purple;
+        position: absolute;
+        cursor: pointer;
+        left: 50%;
+        bottom: -60px;
+        width: 200px;
+        margin-left: -100px;
+        color: white;
+        outline: 0;
+        font-size: 14px;
+        border: 0;
+        border-radius: 30px;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 15px 0;
+        transition: background 0.3s ease;
+      }
     </style>
   </head>
   <body>
@@ -132,15 +150,18 @@
           <button class="submit" type="submit">Pay Now</button>
         </form>
         <button class="clear" id="clear">Clear</button>
-        <button id="paywithpromise">Pay NOW！</button>
+        <button id="promise">Pay with Promise！</button>
+        <div id="log">
       </section>
     </section>
-<button id="paywithpromise">Pay NOW！</button>
+
     <script src="https://try.access.worldpay.com/access-checkout/v1/checkout.js"></script>
     <script>
       (function () {
         var form = document.getElementById("card-form");
         var clear = document.getElementById("clear");
+        var btnPro = document.getElementById("promise");
+        var log = document.getElementById("log");
         Worldpay.checkout.init(
           {
             id: "5931c832-4854-439b-82af-e002d0d56806",
@@ -224,6 +245,43 @@
                 console.log(sessionState);
                 
               });
+            });
+            btnPro.addEventListener("click", function (event) {
+              let JobA = new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                  resolve();
+                }, Math.random()*1000+1000)
+                log.insertAdjacentHTML("beforeend",'Job A is starting...<br>')               
+              })
+              JobA.then(res => {
+                log.insertAdjacentHTML("beforeend","Job A is done<br>")
+              })
+              let JobB = new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                  resolve();
+                }, Math.random()*1000+1000)
+                log.insertAdjacentHTML("beforeend",'Job B is starting...<br>')               
+              })
+              JobB.then(res => {
+                log.insertAdjacentHTML("beforeend","Job B is done<br>")
+              })
+              let JobAWP = new Promise((resolve, reject) => {
+                event.preventDefault();
+                checkout.generateSessionState(function (error, sessionState) {
+                if (error) {
+                  console.error(error);
+                  return;
+                }
+                resolve(sessionState);             
+                log.insertAdjacentHTML("beforeend",'AWP Getting Session is starting...<br>')               
+              })
+              JobAWP.then(res => {
+                log.insertAdjacentHTML("beforeend",res + "<br>")
+              })
+              Promise.race([JobA, JobB, JobAWP]).then(res => {
+                log.insertAdjacentHTML("beforeend","All Done, creating the order...")
+              })
+              
             });
 
             clear.addEventListener("click", function (event) {
