@@ -267,12 +267,13 @@
               })
               let JobAWP = new Promise((resolve, reject) => {                
                 checkout.generateSessionState(function (error, sessionState) {
-                if (error) {
-                  console.error(error)
-                  return;
-                }
-                resolve(sessionState)            
-                log.insertAdjacentHTML("beforeend",'AWP Getting Session is starting...<br>')               
+                  if (error) {
+                    console.error(error)
+                    return
+                  }
+                  resolve(sessionState)            
+                  log.insertAdjacentHTML("beforeend",'AWP Getting Session is starting...<br>')               
+                })
               })
               JobAWP.then(res => {
                 log.insertAdjacentHTML("beforeend",res + "<br>")
