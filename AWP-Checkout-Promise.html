@@ -253,6 +253,18 @@
                 }, Math.random()*1000+1000)
                 log.insertAdjacentHTML("beforeend",'Job A is starting...<br>')               
               })
+              JobA.then(res => {
+                log.insertAdjacentHTML("beforeend","Job A is done<br>")
+              })
+              let JobB = new Promise((resolve, reject) => {
+                setTimeout(() =>{
+                  resolve()
+                }, Math.random()*1000+1000)
+                log.insertAdjacentHTML("beforeend",'Job B is starting...<br>')               
+              })
+              JobB.then(res => {
+                log.insertAdjacentHTML("beforeend","Job B is done<br>")
+              })
              
            });
 
