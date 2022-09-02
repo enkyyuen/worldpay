@@ -247,7 +247,7 @@
               });
             });
            btnPro.addEventListener("click", function (event) {
-             log.innertHTML = ""
+             log.innerHTML = ''
              let JobA = new Promise((resolve, reject) => {
                 setTimeout(() =>{
                   resolve()
@@ -280,9 +280,9 @@
                 log.insertAdjacentHTML("beforeend",res + "<br>")
               })
              
-             Promise.race([JobA, JobB, JobAWP]).then(res => {
-                log.insertAdjacentHTML("beforeend","All Done, creating the order...")
-              })
+ //            Promise.race([JobA, JobB, JobAWP]).then(res => {
+  //              log.insertAdjacentHTML("beforeend","All Done, creating the order...")
+ //             })
              
            });
 
