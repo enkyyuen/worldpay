@@ -246,43 +246,7 @@
                 
               });
             });
-            btnPro.addEventListener("click", function (event) {
-              let JobA = new Promise((resolve, reject) => {
-                setTimeout(() =>{
-                  resolve();
-                }, Math.random()*1000+1000)
-                log.insertAdjacentHTML("beforeend",'Job A is starting...<br>')               
-              })
-              JobA.then(res => {
-                log.insertAdjacentHTML("beforeend","Job A is done<br>")
-              })
-              let JobB = new Promise((resolve, reject) => {
-                setTimeout(() =>{
-                  resolve();
-                }, Math.random()*1000+1000)
-                log.insertAdjacentHTML("beforeend",'Job B is starting...<br>')               
-              })
-              JobB.then(res => {
-                log.insertAdjacentHTML("beforeend","Job B is done<br>")
-              })
-              let JobAWP = new Promise((resolve, reject) => {
-                event.preventDefault();
-                checkout.generateSessionState(function (error, sessionState) {
-                if (error) {
-                  console.error(error);
-                  return;
-                }
-                resolve(sessionState);             
-                log.insertAdjacentHTML("beforeend",'AWP Getting Session is starting...<br>')               
-              })
-              JobAWP.then(res => {
-                log.insertAdjacentHTML("beforeend",res + "<br>")
-              })
-              Promise.race([JobA, JobB, JobAWP]).then(res => {
-                log.insertAdjacentHTML("beforeend","All Done, creating the order...")
-              })
-              
-            });
+           
 
             clear.addEventListener("click", function (event) {
               event.preventDefault();
