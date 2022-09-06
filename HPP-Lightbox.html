@@ -2,7 +2,9 @@
 <html>
    <head>
       <title> LightBox Payment Test </title>
-      <script src='https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js'></script>
+      <link rel='stylesheet' href='https://payments.worldpay.com/resources/hpp/integrations/embedded/css/hpp-embedded-integration-library.css'/>
+    <script src='https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js'></script>
+
    </head>
    <body>
       <div>This is my test page as a merchant</div>
@@ -11,7 +13,7 @@
       <script type="text/javascript">
          //your options
          var customOptions = {
-         iframeHelperURL: 'https://example.com/helper.html',
+         iframeHelperURL: 'https://enkyyuen.github.io/worldpay/helper.html',
          url: 'https://payments-test.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=KSHERTEST%5ECHN-AY-HPP-2022090632259&Ticket=00166286739921402_KsRAXBmLYmY1EvOpOganw&source=https%3A%2F%2Fsecure-test.worldpay.com',
          type: 'lightbox',
          trigger: 'custom-trigger',
