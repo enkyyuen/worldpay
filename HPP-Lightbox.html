@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title> LightBox Payment Test </title>
+      <title>Worldpay - WPG LightBox Sample </title>
       <link rel='stylesheet' href='https://payments.worldpay.com/resources/hpp/integrations/embedded/css/hpp-embedded-integration-library.css'/>
-    <script src='https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js'></script>
-
+      <script src='https://payments.worldpay.com/resources/hpp/integrations/embedded/js/hpp-embedded-integration-library.js'></script>
+      <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  
    </head>
    <body>
-      <div>This is my test page as a merchant</div>
+      <div><img src="bikeshop.png"></div>
       <div id='custom-html'></div>
-      <a href='#' id='custom-trigger'>Click me</a>
+      <div style="padding-left:20px;">
+      <a href='#' id='custom-trigger' style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:darkcyan;color: white;padding: 1em 1.5em;      text-decoration: none;  text-transform: uppercase;">Checkout with WorldPay</a></div>
       <script type="text/javascript">
-         //your options
-         var customOptions = {
-         iframeHelperURL: 'https://enkyyuen.github.io/worldpay/helper.html',
-         url: 'https://payments-test.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=KSHERTEST%5ECHN-AY-HPP-2022090632259&Ticket=00166286739921402_KsRAXBmLYmY1EvOpOganw&source=https%3A%2F%2Fsecure-test.worldpay.com',
-         type: 'lightbox',
-         trigger: 'custom-trigger',
-         lightboxMaskOpacity: 80,
-         lightboxMaskColor: '#000000',
-         accessibility: true,
-         debug: false,
-         language: 'en',
-         country: 'gb',
-         preferredPaymentMethod: 'VISA-SSL',
-         successURL: 'https://example.com/success',
-         cancelURL: 'https://example.com/cancel',
-         failureURL: 'https://example.com/failure',
-         pendingURL: 'https://example.com/pending',
-         errorURL: 'https://example.com/error'
-         };
+//your options
+var customOptions = {
+    type: 'lightbox',
+    iframeIntegrationId: 'libraryObject',
+    inject: 'onload',
+    iframeHelperURL: 'https://enkyyuen.github.io/worldpay/helper.html',
+    iframeBaseURL: 'https://enkyyuen.github.io/worldpay/',
+    url: 'https://payments-test.worldpay.com/app/hpp/integration/wpg/corporate?OrderKey=KSHERTEST%5ECHN-AY-HPP-2022090632259&Ticket=00166286739921402_KsRAXBmLYmY1EvOpOganw&source=https%3A%2F%2Fsecure-test.worldpay.com',
+    target: 'custom-html',
+    trigger: 'custom-trigger',
+    lightboxMaskOpacity: 30,
+    lightboxMaskColor: '#000000',
+    lightboxShadowColor: '#666',
+    lightboxShadowSize: '30px',
+    accessibility: true,
+    debug: false,
+    language: 'en',
+    country: 'gb',
+    preferredPaymentMethod: 'ECMC-SSL',
+    successURL: 'https://enkyyuen.github.io/worldpay/HPP-success.html',
+    cancelURL: 'https://enkyyuen.github.io/worldpay/HPP-cancel.html',
+    failureURL: 'https://enkyyuen.github.io/worldpay/HPP-failure.html',
+    pendingURL: 'https://enkyyuen.github.io/worldpay/HPP-pending.html',
+    errorURL: 'https://enkyyuen.github.io/worldpay/HPP-error.html'
+};
          //initialise the library and pass options
+         $(document).ready(function () {
          var libraryObject = new WPCL.Library();
          libraryObject.setup(customOptions);
+         libraryObject.populate({
+            cardNumber: "4444333322221111",
+            cardHolderName: "AUTHORISED",
+            cardExpiryMonth: 12,
+            cardExpiryYear: 49,
+            cardSecurityCode: "123"
+            });
+        });
       </script>
    </body>
 </html>
